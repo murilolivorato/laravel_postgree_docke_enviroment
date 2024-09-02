@@ -28,8 +28,6 @@ services:
     container_name: ps_core_server
     networks:
       - ps_core
-    #extra_hosts:
-     #- "host.docker.internal:host-gateway"
   postgres:
     image: postgres:15.3-alpine
     container_name: postgres_core
@@ -49,13 +47,9 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      #- ./data/postgres:/var/lib/postgresql/data
       - /opt/postgres_data:/var/lib/postgresql/data
     networks:
       - ps_core
-
-    #volumes:
-      #- /opt/pg_data:/var/lib/postgres
   pgadmin:
     image: dpage/pgadmin4:latest
     container_name: pgadmin_core
@@ -69,7 +63,6 @@ services:
     ports:
       - 8888:80
     volumes:
-      #- ./data/pgadmin:/var/lib/pgadmin
       - /opt/pgadmin_data:/var/lib/pgadmin
     networks:
       - ps_core
